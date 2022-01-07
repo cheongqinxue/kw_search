@@ -30,7 +30,7 @@ class KeywordIndexer:
         string = string.lower()
         for column, proc in self.analyzers:
             self.df[column+'_score'] = self.df[column].apply(lambda x: processes[proc](x,string))
-        self.df['_score'] = self.df[self.score_columns].max(1)
+        self.df['_score'] = self.df[self.score_columns].mean(1)
         return self.df.sort_values(by='_score', ascending=False).head(20)
 
 
@@ -61,7 +61,7 @@ def main():
 
     if len(string) > 1:
         result = kw.greedy_process(string)
-        result = result.rename(columns={
+        result = result[['name','concat_names_score','truncated_name_score','_score']].rename(columns={
             'name':'Name',
             'concat_names_score':'Concat Names Score',
             'truncated_name_score':'Truncated Name Score',
