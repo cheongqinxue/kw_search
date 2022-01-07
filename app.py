@@ -46,19 +46,18 @@ def load(which):
 
 
 def main():
+    st.markdown('### Search results')
 
     which = st.sidebar.selectbox(label = 'Select entity type', options=['organizations','persons'], 
         index=0, key=None, help=None)
-
+    
+    string = st.sidebar.text_input(label='Search')
+    
     df = load(which)
 
     kw = KeywordIndexer(
         df[['name','concat_names','truncated_name']], 
         [('concat_names','WRatio'), ('truncated_name','ratio')])
-
-    string = st.sidebar.text_input(label='Search')
-
-    st.markdown('### Search results')
 
     if len(string) > 1:
         result = kw.greedy_process(string)
