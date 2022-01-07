@@ -63,8 +63,6 @@ def main():
         result = kw.greedy_process(string)
         result = result.rename(columns={
             'name':'Name',
-            'concat_names':'Concat Names',
-            'truncated_name':'Truncated Name',
             'concat_names_score':'Concat Names Score',
             'truncated_name_score':'Truncated Name Score',
             '_score':'Highest Score'})
