@@ -58,11 +58,12 @@ def main():
 
     string = st.sidebar.text_input(label='Search')
 
-    result = kw.greedy_process(string)
     st.markdown('### Search results')
 
     if len(string) > 1:
-        st.dataframe(result[['name','concat_names','_score']].rename(columns={'name':'Name','concat_names':'Concatenated Names','_score':'Score'}))
+        result = kw.greedy_process(string)
+        result = result[['name','concat_names','_score']].rename(columns={'name':'Name','concat_names':'Concatenated Names','_score':'Score'})
+        st.dataframe(result, height=2000)
     else:
         st.markdown('Enter a query in the side bar to search for names with similar spelling')
 
