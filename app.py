@@ -65,7 +65,7 @@ def main():
             'name':'Name',
             'concat_names_score':'Concat Names Score',
             'truncated_name_score':'Truncated Name Score',
-            '_score':'Highest Score'})
+            '_score':'Overall Score'})
         st.dataframe(result, height=2000)
     else:
         st.markdown('Enter a query in the side bar to find similar names')
