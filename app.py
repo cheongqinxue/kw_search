@@ -62,7 +62,7 @@ def main():
     st.markdown('### Search results')
 
     if len(string) > 1:
-        st.dataframe(result[['name','concat_name','_score']].rename(columns={'name':'Name','Concatenated Names','_score':'Score'}))
+        st.dataframe(result[['name','concat_name','_score']].rename(columns={'name':'Name','concat_name':'Concatenated Names','_score':'Score'}))
     else:
         st.markdown('Enter a query in the side bar to search for names with similar spelling')
 
