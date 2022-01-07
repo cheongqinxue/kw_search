@@ -61,10 +61,16 @@ def main():
 
     if len(string) > 1:
         result = kw.greedy_process(string)
-        result = result[['name','concat_names','_score']].rename(columns={'name':'Name','concat_names':'Concatenated Names','_score':'Score'})
+        result = result.rename(columns={
+            'name':'Name',
+            'concat_names':'Concat Names',
+            'truncated_name':'Truncated Name',
+            'concat_names_score':'Concat Names Score',
+            'truncated_name_score':'Truncated Name Score',
+            '_score':'Highest Score'})
         st.dataframe(result, height=2000)
     else:
-        st.markdown('Enter a query in the side bar to search for names with similar spelling')
+        st.markdown('Enter a query in the side bar to find similar names')
 
 if __name__ == '__main__':
     main()
