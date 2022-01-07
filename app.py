@@ -31,7 +31,7 @@ class KeywordIndexer:
         for column, proc in self.analyzers:
             self.df[column+'_score'] = self.df[column].apply(lambda x: processes[proc](x,string))
         self.df['_score'] = self.df[self.score_columns].max(1)
-        return self.df.sort_values(by='_score', ascending=False).head(10)
+        return self.df.sort_values(by='_score', ascending=False).head(20)
 
 
 @st.cache(persist=True, ttl=3600)
@@ -62,7 +62,7 @@ def main():
     st.markdown('### Search results')
 
     if len(string) > 1:
-        st.dataframe(result[['name','_score']].rename(columns={'name':'Name','_score':'Score'}))
+        st.dataframe(result[['name','concat_name','_score']].rename(columns={'name':'Name','Concatenated Names','_score':'Score'}))
     else:
         st.markdown('Enter a query in the side bar to search for names with similar spelling')
 
